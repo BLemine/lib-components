@@ -16,8 +16,11 @@ const config: StorybookConfig = {
   staticDirs: ["../public"],
   viteFinal: async (config) => {
     const { default: tailwindcss } = await import("@tailwindcss/vite")
+    const { default: react } = await import("@vitejs/plugin-react")
+    
     config.plugins = config.plugins || []
     config.plugins.push(tailwindcss())
+    config.plugins.push(react())
     
     // Add path alias resolution
     config.resolve = config.resolve || {}

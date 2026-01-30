@@ -50,13 +50,13 @@ export function SignUpAnimated() {
   }
 
   return (
-    <div className="relative w-full max-w-md">
+    <div className="relative w-full max-w-lg">
       {/* Background glow effect */}
       <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 blur-xl opacity-75 animate-pulse" />
       
       <div className="relative overflow-hidden rounded-2xl border border-border/50 bg-card/95 backdrop-blur-xl shadow-2xl">
         {/* Animated header gradient */}
-        <div className="relative h-36 bg-gradient-to-br from-primary/10 via-background to-accent/10 overflow-hidden">
+        <div className="relative h-44 bg-gradient-to-br from-primary/10 via-background to-accent/10 overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(var(--primary)/0.3),transparent_50%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(var(--accent)/0.2),transparent_50%)]" />
           <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
@@ -67,12 +67,12 @@ export function SignUpAnimated() {
           <div className="absolute bottom-8 left-1/3 w-1 h-1 rounded-full bg-primary/30 animate-bounce" style={{ animationDelay: "1s", animationDuration: "3s" }} />
           
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center space-y-2">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 backdrop-blur-sm">
-                <Zap className="h-6 w-6 text-primary animate-pulse" />
+            <div className="text-center space-y-3">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 border border-primary/20 backdrop-blur-sm">
+                <Zap className="h-7 w-7 text-primary animate-pulse" />
               </div>
-              <h1 className="text-2xl font-bold tracking-tight">Create account</h1>
-              <p className="text-sm text-muted-foreground">Step {step} of 2</p>
+              <h1 className="text-3xl font-bold tracking-tight">Create account</h1>
+              <p className="text-base text-muted-foreground">Step {step} of 2</p>
             </div>
           </div>
         </div>
@@ -85,8 +85,8 @@ export function SignUpAnimated() {
           />
         </div>
 
-        <div className="p-6 space-y-6">
-          <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="p-8 space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-5">
             {step === 1 ? (
               <div className="space-y-4 animate-in slide-in-from-right-4 duration-300">
                 <div className="space-y-2">
@@ -103,7 +103,7 @@ export function SignUpAnimated() {
                     )} />
                     <div className="relative">
                       <User className={cn(
-                        "absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transition-colors duration-300",
+                        "absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 transition-colors duration-300",
                         focusedField === "name" ? "text-primary" : "text-muted-foreground"
                       )} />
                       <Input
@@ -114,7 +114,7 @@ export function SignUpAnimated() {
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         onFocus={() => setFocusedField("name")}
                         onBlur={() => setFocusedField(null)}
-                        className="pl-10 bg-background/50 border-border/50 transition-all duration-300 focus:bg-background"
+                        className="pl-12 h-12 text-base bg-background/50 border-border/50 transition-all duration-300 focus:bg-background"
                         required
                       />
                     </div>
@@ -135,7 +135,7 @@ export function SignUpAnimated() {
                     )} />
                     <div className="relative">
                       <Mail className={cn(
-                        "absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transition-colors duration-300",
+                        "absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 transition-colors duration-300",
                         focusedField === "email" ? "text-primary" : "text-muted-foreground"
                       )} />
                       <Input
@@ -146,7 +146,7 @@ export function SignUpAnimated() {
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         onFocus={() => setFocusedField("email")}
                         onBlur={() => setFocusedField(null)}
-                        className="pl-10 bg-background/50 border-border/50 transition-all duration-300 focus:bg-background"
+                        className="pl-12 h-12 text-base bg-background/50 border-border/50 transition-all duration-300 focus:bg-background"
                         required
                       />
                     </div>
@@ -169,7 +169,7 @@ export function SignUpAnimated() {
                     )} />
                     <div className="relative">
                       <Lock className={cn(
-                        "absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transition-colors duration-300",
+                        "absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 transition-colors duration-300",
                         focusedField === "password" ? "text-primary" : "text-muted-foreground"
                       )} />
                       <Input
@@ -180,20 +180,20 @@ export function SignUpAnimated() {
                         onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                         onFocus={() => setFocusedField("password")}
                         onBlur={() => setFocusedField(null)}
-                        className="pl-10 pr-10 bg-background/50 border-border/50 transition-all duration-300 focus:bg-background"
+                        className="pl-12 pr-12 h-12 text-base bg-background/50 border-border/50 transition-all duration-300 focus:bg-background"
                         required
                       />
                       <Button
                         type="button"
                         variant="ghost"
                         size="icon"
-                        className="absolute right-1 top-1/2 h-7 w-7 -translate-y-1/2 hover:bg-transparent"
+                        className="absolute right-2 top-1/2 h-8 w-8 -translate-y-1/2 hover:bg-transparent"
                         onClick={() => setShowPassword(!showPassword)}
                       >
                         {showPassword ? (
-                          <EyeOff className="h-4 w-4 text-muted-foreground" />
+                          <EyeOff className="h-5 w-5 text-muted-foreground" />
                         ) : (
-                          <Eye className="h-4 w-4 text-muted-foreground" />
+                          <Eye className="h-5 w-5 text-muted-foreground" />
                         )}
                       </Button>
                     </div>
@@ -232,7 +232,7 @@ export function SignUpAnimated() {
                     )} />
                     <div className="relative">
                       <Lock className={cn(
-                        "absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transition-colors duration-300",
+                        "absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 transition-colors duration-300",
                         focusedField === "confirmPassword" ? "text-primary" : "text-muted-foreground"
                       )} />
                       <Input
@@ -243,20 +243,20 @@ export function SignUpAnimated() {
                         onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
                         onFocus={() => setFocusedField("confirmPassword")}
                         onBlur={() => setFocusedField(null)}
-                        className="pl-10 pr-10 bg-background/50 border-border/50 transition-all duration-300 focus:bg-background"
+                        className="pl-12 pr-12 h-12 text-base bg-background/50 border-border/50 transition-all duration-300 focus:bg-background"
                         required
                       />
                       <Button
                         type="button"
                         variant="ghost"
                         size="icon"
-                        className="absolute right-1 top-1/2 h-7 w-7 -translate-y-1/2 hover:bg-transparent"
+                        className="absolute right-2 top-1/2 h-8 w-8 -translate-y-1/2 hover:bg-transparent"
                         onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                       >
                         {showConfirmPassword ? (
-                          <EyeOff className="h-4 w-4 text-muted-foreground" />
+                          <EyeOff className="h-5 w-5 text-muted-foreground" />
                         ) : (
-                          <Eye className="h-4 w-4 text-muted-foreground" />
+                          <Eye className="h-5 w-5 text-muted-foreground" />
                         )}
                       </Button>
                       {formData.confirmPassword && formData.password === formData.confirmPassword && (
@@ -289,12 +289,12 @@ export function SignUpAnimated() {
               </div>
             )}
 
-            <div className="flex gap-3">
+            <div className="flex gap-4">
               {step === 2 && (
                 <Button
                   type="button"
                   variant="outline"
-                  className="flex-1 bg-transparent"
+                  className="flex-1 h-12 bg-transparent"
                   onClick={() => setStep(1)}
                 >
                   Back
@@ -302,7 +302,7 @@ export function SignUpAnimated() {
               )}
               <Button
                 type="submit"
-                className="flex-1 group relative overflow-hidden"
+                className="flex-1 h-12 text-base font-medium group relative overflow-hidden"
                 disabled={isLoading}
               >
                 <span className={cn(
@@ -330,12 +330,12 @@ export function SignUpAnimated() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-4">
             <Button
               variant="outline"
-              className="group relative overflow-hidden border-border/50 bg-background/50 hover:bg-background transition-all duration-300 hover:scale-[1.02]"
+              className="h-12 group relative overflow-hidden border-border/50 bg-background/50 hover:bg-background transition-all duration-300 hover:scale-[1.02]"
             >
-              <svg className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" viewBox="0 0 24 24">
+              <svg className="mr-2 h-5 w-5 transition-transform group-hover:scale-110" viewBox="0 0 24 24">
                 <path
                   d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
                   fill="#4285F4"
@@ -357,9 +357,9 @@ export function SignUpAnimated() {
             </Button>
             <Button
               variant="outline"
-              className="group relative overflow-hidden border-border/50 bg-background/50 hover:bg-background transition-all duration-300 hover:scale-[1.02]"
+              className="h-12 group relative overflow-hidden border-border/50 bg-background/50 hover:bg-background transition-all duration-300 hover:scale-[1.02]"
             >
-              <svg className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="mr-2 h-5 w-5 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
               </svg>
               GitHub

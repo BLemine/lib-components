@@ -23,6 +23,7 @@ import { SignInSimple } from "@/components/auth/sign-in-simple"
 import { SignInAnimated } from "@/components/auth/sign-in-animated"
 import { SignUpSimple } from "@/components/auth/sign-up-simple"
 import { SignUpAnimated } from "@/components/auth/sign-up-animated"
+import { SignUpMultistep } from "@/components/auth/sign-up-multistep"
 import { ProfileUI } from "@/components/profile/profile-ui"
 import { FinanceDashboard } from "@/components/dashboard/finance-dashboard"
 import { UsersDashboard } from "@/components/dashboard/users-dashboard"
@@ -55,6 +56,12 @@ const components = [
     name: "Sign Up (Animated)",
     category: "Auth",
     icon: Sparkles,
+  },
+  {
+    id: "signup-multistep",
+    name: "Sign Up (Multi-Step)",
+    category: "Auth",
+    icon: UserPlus,
   },
   {
     id: "profile",
@@ -113,6 +120,8 @@ export default function ComponentsShowcase() {
         return <SignUpSimple />
       case "signup-animated":
         return <SignUpAnimated />
+      case "signup-multistep":
+        return <SignUpMultistep />
       case "profile":
         return <ProfileUI />
       case "finance-dashboard":

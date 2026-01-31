@@ -16,7 +16,10 @@ import {
   CalendarCheck,
   Wallet,
   BookOpen,
-  Sparkles
+  Sparkles,
+  MessageSquare,
+  Columns3,
+  LifeBuoy,
 } from "lucide-react"
 
 import { SignInSimple } from "@/components/auth/sign-in-simple"
@@ -31,6 +34,9 @@ import { AdvancedCalendar } from "@/components/calendar/advanced-calendar"
 import { PayrollDashboard } from "@/components/payroll/payroll-dashboard"
 import { BookingUI } from "@/components/booking/booking-ui"
 import { WalletUI } from "@/components/wallet/wallet-ui"
+import { ChatUI } from "@/components/chat/chat-ui"
+import { KanbanUI } from "@/components/kanban/kanban-ui"
+import { SupportUI } from "@/components/support/support-ui"
 
 const components = [
   {
@@ -105,6 +111,24 @@ const components = [
     category: "Wallet",
     icon: Wallet,
   },
+  {
+    id: "chat",
+    name: "Chat UI",
+    category: "Chat",
+    icon: MessageSquare,
+  },
+  {
+    id: "kanban",
+    name: "Kanban Board",
+    category: "Kanban",
+    icon: Columns3,
+  },
+  {
+    id: "support",
+    name: "Customer Support",
+    category: "Support",
+    icon: LifeBuoy,
+  },
 ]
 
 export default function ComponentsShowcase() {
@@ -136,6 +160,12 @@ export default function ComponentsShowcase() {
         return <BookingUI />
       case "wallet":
         return <WalletUI />
+      case "chat":
+        return <ChatUI />
+      case "kanban":
+        return <KanbanUI />
+      case "support":
+        return <SupportUI />
       default:
         return <SignInSimple />
     }

@@ -1,30 +1,18 @@
-# Project setup with Storybook
+# lib-components
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+A reusable UI component library with a Next.js demo app and Storybook for isolated development.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/lemines-projects/v0-lib-components)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/rxnVmmLTWHs)
+## Getting started
 
-## Overview
+```bash
+pnpm install
+pnpm dev
+```
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+## Storybook UI
 
-## Deployment
+```bash
+pnpm storybook
+```
 
-Your project is live at:
-
-**[https://vercel.com/lemines-projects/v0-lib-components](https://vercel.com/lemines-projects/v0-lib-components)**
-
-## Build your app
-
-Continue building your app on:
-
-**[https://v0.app/chat/rxnVmmLTWHs](https://v0.app/chat/rxnVmmLTWHs)**
-
-## How It Works
-
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+Then open `http://localhost:6006` in your browser.

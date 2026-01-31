@@ -114,7 +114,25 @@ const recentUsers = [
   },
 ]
 
-export function UsersDashboard() {
+export interface UsersDashboardProps {
+  title?: string
+  subtitle?: string
+  showHeader?: boolean
+  showGrowthChart?: boolean
+  showLocationChart?: boolean
+  showActivityChart?: boolean
+  showRecentUsers?: boolean
+}
+
+export function UsersDashboard({
+  title = "Users Dashboard",
+  subtitle = "Monitor user growth, engagement, and activity",
+  showHeader = true,
+  showGrowthChart = true,
+  showLocationChart = true,
+  showActivityChart = true,
+  showRecentUsers = true,
+}: UsersDashboardProps) {
   const stats = [
     {
       title: "Total Users",
@@ -161,8 +179,8 @@ export function UsersDashboard() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Users Dashboard</h1>
-          <p className="text-muted-foreground">Monitor user growth, engagement, and activity</p>
+          <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
+          <p className="text-muted-foreground">{subtitle}</p>
         </div>
         <div className="flex items-center gap-2">
           <div className="relative">

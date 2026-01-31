@@ -82,7 +82,21 @@ const testimonials = [
   },
 ]
 
-export function BookingUI() {
+export interface BookingUIProps {
+  title?: string
+  description?: string
+  showTestimonials?: boolean
+  showContactInfo?: boolean
+  showSummary?: boolean
+}
+
+export function BookingUI({
+  title = "Book a Session",
+  description = "Schedule your consultation in a few steps",
+  showTestimonials = true,
+  showContactInfo = true,
+  showSummary = true,
+}: BookingUIProps) {
   const [step, setStep] = useState(1)
   const [selectedService, setSelectedService] = useState<number | null>(null)
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined)
@@ -114,8 +128,8 @@ export function BookingUI() {
           <CardHeader className="pb-4">
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle>Book a Session</CardTitle>
-                <CardDescription>Schedule your consultation in a few steps</CardDescription>
+                <CardTitle>{title}</CardTitle>
+                <CardDescription>{description}</CardDescription>
               </div>
               <div className="flex items-center gap-2">
                 {[1, 2, 3, 4].map((s) => (

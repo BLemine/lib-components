@@ -115,8 +115,20 @@ const recentPayments = [
   { id: 4, type: "Benefits", description: "Health Insurance", amount: "$18,200", date: "Jan 5", status: "completed" },
 ]
 
-export function PayrollDashboard() {
-  const [activeTab, setActiveTab] = useState("overview")
+export interface PayrollDashboardProps {
+  title?: string
+  subtitle?: string
+  showHeader?: boolean
+  defaultTab?: "overview" | "employees" | "history"
+}
+
+export function PayrollDashboard({
+  title = "Payroll Management",
+  subtitle = "Manage employee compensation and payments",
+  showHeader = true,
+  defaultTab = "overview",
+}: PayrollDashboardProps) {
+  const [activeTab, setActiveTab] = useState(defaultTab)
 
   const stats = [
     {
@@ -166,8 +178,8 @@ export function PayrollDashboard() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Payroll Management</h1>
-          <p className="text-muted-foreground">Manage employee compensation and payments</p>
+          <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
+          <p className="text-muted-foreground">{subtitle}</p>
         </div>
         <div className="flex items-center gap-2">
           <Button variant="outline">

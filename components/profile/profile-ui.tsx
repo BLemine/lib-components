@@ -27,7 +27,17 @@ import {
   Check
 } from "lucide-react"
 
-export function ProfileUI() {
+export interface ProfileUIProps {
+  showStats?: boolean
+  showHeader?: boolean
+  defaultTab?: "overview" | "security" | "notifications" | "billing"
+}
+
+export function ProfileUI({
+  showStats = true,
+  showHeader = true,
+  defaultTab = "overview",
+}: ProfileUIProps) {
   const [isEditing, setIsEditing] = useState(false)
   const [profile, setProfile] = useState({
     name: "Alex Johnson",
@@ -127,7 +137,7 @@ export function ProfileUI() {
       </div>
 
       {/* Tabs Section */}
-      <Tabs defaultValue="overview" className="w-full">
+      <Tabs defaultValue={defaultTab} className="w-full">
         <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="security">Security</TabsTrigger>

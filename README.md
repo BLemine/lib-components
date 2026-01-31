@@ -1,6 +1,10 @@
 # lib-components
 
-A reusable UI component library with a Next.js demo app and Storybook for isolated development.
+A reusable UI component library with a Next.js demo app and Storybook for isolated development built fully with **vercel v0**
+
+## Showcase
+
+![Storybook Booking UI](documentation/media/storybook-bookingUI.png)
 
 ## Getting started
 

@@ -103,10 +103,20 @@ const upcomingEvents = [
   { title: "Client Call", time: "Jan 17, 10:00", type: "call" },
 ]
 
-export function AdvancedCalendar() {
+export interface AdvancedCalendarProps {
+  showUpcomingEvents?: boolean
+  showEventDetails?: boolean
+  defaultView?: "month" | "week"
+}
+
+export function AdvancedCalendar({
+  showUpcomingEvents = true,
+  showEventDetails = true,
+  defaultView = "month",
+}: AdvancedCalendarProps) {
   const [currentDate, setCurrentDate] = useState(new Date(2026, 0, 15))
   const [selectedDay, setSelectedDay] = useState(15)
-  const [view, setView] = useState<"month" | "week">("month")
+  const [view, setView] = useState<"month" | "week">(defaultView)
 
   const monthNames = [
     "January", "February", "March", "April", "May", "June",

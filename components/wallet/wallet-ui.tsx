@@ -129,7 +129,27 @@ const contacts = [
   { name: "James R.", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=64&h=64&fit=crop&crop=face" },
 ]
 
-export function WalletUI() {
+export interface WalletUIProps {
+  title?: string
+  subtitle?: string
+  showHeader?: boolean
+  showCards?: boolean
+  showQuickSend?: boolean
+  showSecurity?: boolean
+  showQuickActions?: boolean
+  showTransactions?: boolean
+}
+
+export function WalletUI({
+  title = "My Wallet",
+  subtitle = "Manage your money and cards",
+  showHeader = true,
+  showCards = true,
+  showQuickSend = true,
+  showSecurity = true,
+  showQuickActions = true,
+  showTransactions = true,
+}: WalletUIProps) {
   const [showBalance, setShowBalance] = useState(true)
   const [activeCard, setActiveCard] = useState(0)
 
@@ -142,8 +162,8 @@ export function WalletUI() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">My Wallet</h1>
-          <p className="text-muted-foreground">Manage your money and cards</p>
+          <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
+          <p className="text-muted-foreground">{subtitle}</p>
         </div>
         <div className="flex items-center gap-2">
           <Button variant="outline" size="icon">

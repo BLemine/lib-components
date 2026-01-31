@@ -72,7 +72,25 @@ const transactions = [
   { id: 5, name: "Client Payment", amount: "+$5,000.00", type: "income", date: "2 days ago" },
 ]
 
-export function FinanceDashboard() {
+export interface FinanceDashboardProps {
+  title?: string
+  subtitle?: string
+  showHeader?: boolean
+  showExpenseChart?: boolean
+  showWeeklyChart?: boolean
+  showTransactions?: boolean
+  defaultTimeRange?: "weekly" | "monthly" | "yearly"
+}
+
+export function FinanceDashboard({
+  title = "Finance Dashboard",
+  subtitle = "Track your revenue, expenses, and financial health",
+  showHeader = true,
+  showExpenseChart = true,
+  showWeeklyChart = true,
+  showTransactions = true,
+  defaultTimeRange = "monthly",
+}: FinanceDashboardProps) {
   const stats = [
     {
       title: "Total Revenue",
@@ -111,22 +129,24 @@ export function FinanceDashboard() {
   return (
     <div className="w-full max-w-7xl space-y-6 p-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Finance Dashboard</h1>
-          <p className="text-muted-foreground">Track your revenue, expenses, and financial health</p>
+      {showHeader && (
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
+            <p className="text-muted-foreground">{subtitle}</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <Tabs defaultValue={defaultTimeRange} className="w-auto">
+              <TabsList>
+                <TabsTrigger value="weekly">Weekly</TabsTrigger>
+                <TabsTrigger value="monthly">Monthly</TabsTrigger>
+                <TabsTrigger value="yearly">Yearly</TabsTrigger>
+              </TabsList>
+            </Tabs>
+            <Button>Download Report</Button>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <Tabs defaultValue="monthly" className="w-auto">
-            <TabsList>
-              <TabsTrigger value="weekly">Weekly</TabsTrigger>
-              <TabsTrigger value="monthly">Monthly</TabsTrigger>
-              <TabsTrigger value="yearly">Yearly</TabsTrigger>
-            </TabsList>
-          </Tabs>
-          <Button>Download Report</Button>
-        </div>
-      </div>
+      )}
 
       {/* Stats Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -159,7 +179,7 @@ export function FinanceDashboard() {
       {/* Charts Row */}
       <div className="grid gap-4 lg:grid-cols-7">
         {/* Revenue Chart */}
-        <Card className="lg:col-span-4">
+        <Card className={showExpenseChart ? "lg:col-span-4" : "lg:col-span-7"}>
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
@@ -218,126 +238,134 @@ export function FinanceDashboard() {
         </Card>
 
         {/* Expense Breakdown */}
-        <Card className="lg:col-span-3">
-          <CardHeader>
-            <CardTitle>Expense Breakdown</CardTitle>
-            <CardDescription>By category this month</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="h-[200px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={expenseCategories}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={60}
-                    outerRadius={80}
-                    paddingAngle={4}
-                    dataKey="value"
-                  >
-                    {expenseCategories.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.color} />
-                    ))}
-                  </Pie>
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: "hsl(var(--card))",
-                      border: "1px solid hsl(var(--border))",
-                      borderRadius: "8px",
-                    }}
-                  />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-            <div className="grid grid-cols-2 gap-2 mt-4">
-              {expenseCategories.map((category) => (
-                <div key={category.name} className="flex items-center gap-2">
-                  <div
-                    className="h-3 w-3 rounded-full"
-                    style={{ backgroundColor: category.color }}
-                  />
-                  <span className="text-sm text-muted-foreground">{category.name}</span>
-                  <span className="text-sm font-medium ml-auto">{category.value}%</span>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+        {showExpenseChart && (
+          <Card className="lg:col-span-3">
+            <CardHeader>
+              <CardTitle>Expense Breakdown</CardTitle>
+              <CardDescription>By category this month</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="h-[200px]">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={expenseCategories}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={60}
+                      outerRadius={80}
+                      paddingAngle={4}
+                      dataKey="value"
+                    >
+                      {expenseCategories.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.color} />
+                      ))}
+                    </Pie>
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: "hsl(var(--card))",
+                        border: "1px solid hsl(var(--border))",
+                        borderRadius: "8px",
+                      }}
+                    />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+              <div className="grid grid-cols-2 gap-2 mt-4">
+                {expenseCategories.map((category) => (
+                  <div key={category.name} className="flex items-center gap-2">
+                    <div
+                      className="h-3 w-3 rounded-full"
+                      style={{ backgroundColor: category.color }}
+                    />
+                    <span className="text-sm text-muted-foreground">{category.name}</span>
+                    <span className="text-sm font-medium ml-auto">{category.value}%</span>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
       </div>
 
       {/* Bottom Row */}
-      <div className="grid gap-4 lg:grid-cols-7">
-        {/* Weekly Revenue */}
-        <Card className="lg:col-span-3">
-          <CardHeader>
-            <CardTitle>Weekly Revenue</CardTitle>
-            <CardDescription>Daily breakdown this week</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="h-[200px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={weeklyRevenue}>
-                  <CartesianGrid strokeDasharray="3 3" className="stroke-muted" vertical={false} />
-                  <XAxis dataKey="day" className="text-xs" tick={{ fill: "hsl(var(--muted-foreground))" }} />
-                  <YAxis className="text-xs" tick={{ fill: "hsl(var(--muted-foreground))" }} />
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: "hsl(var(--card))",
-                      border: "1px solid hsl(var(--border))",
-                      borderRadius: "8px",
-                    }}
-                  />
-                  <Bar dataKey="amount" fill="hsl(var(--chart-1))" radius={[4, 4, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Recent Transactions */}
-        <Card className="lg:col-span-4">
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <div>
-                <CardTitle>Recent Transactions</CardTitle>
-                <CardDescription>Latest financial activities</CardDescription>
-              </div>
-              <Button variant="outline" size="sm">View All</Button>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {transactions.map((transaction) => (
-                <div key={transaction.id} className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className={`p-2 rounded-full ${
-                      transaction.type === "income" 
-                        ? "bg-success/10 text-success" 
-                        : "bg-destructive/10 text-destructive"
-                    }`}>
-                      {transaction.type === "income" ? (
-                        <ArrowUpRight className="h-4 w-4" />
-                      ) : (
-                        <ArrowDownRight className="h-4 w-4" />
-                      )}
-                    </div>
-                    <div>
-                      <p className="font-medium text-sm">{transaction.name}</p>
-                      <p className="text-xs text-muted-foreground">{transaction.date}</p>
-                    </div>
-                  </div>
-                  <span className={`font-semibold ${
-                    transaction.type === "income" ? "text-success" : "text-destructive"
-                  }`}>
-                    {transaction.amount}
-                  </span>
+      {(showWeeklyChart || showTransactions) && (
+        <div className="grid gap-4 lg:grid-cols-7">
+          {/* Weekly Revenue */}
+          {showWeeklyChart && (
+            <Card className={showTransactions ? "lg:col-span-3" : "lg:col-span-7"}>
+              <CardHeader>
+                <CardTitle>Weekly Revenue</CardTitle>
+                <CardDescription>Daily breakdown this week</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="h-[200px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={weeklyRevenue}>
+                      <CartesianGrid strokeDasharray="3 3" className="stroke-muted" vertical={false} />
+                      <XAxis dataKey="day" className="text-xs" tick={{ fill: "hsl(var(--muted-foreground))" }} />
+                      <YAxis className="text-xs" tick={{ fill: "hsl(var(--muted-foreground))" }} />
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: "hsl(var(--card))",
+                          border: "1px solid hsl(var(--border))",
+                          borderRadius: "8px",
+                        }}
+                      />
+                      <Bar dataKey="amount" fill="hsl(var(--chart-1))" radius={[4, 4, 0, 0]} />
+                    </BarChart>
+                  </ResponsiveContainer>
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Recent Transactions */}
+          {showTransactions && (
+            <Card className={showWeeklyChart ? "lg:col-span-4" : "lg:col-span-7"}>
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle>Recent Transactions</CardTitle>
+                    <CardDescription>Latest financial activities</CardDescription>
+                  </div>
+                  <Button variant="outline" size="sm">View All</Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {transactions.map((transaction) => (
+                    <div key={transaction.id} className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className={`p-2 rounded-full ${
+                          transaction.type === "income" 
+                            ? "bg-success/10 text-success" 
+                            : "bg-destructive/10 text-destructive"
+                        }`}>
+                          {transaction.type === "income" ? (
+                            <ArrowUpRight className="h-4 w-4" />
+                          ) : (
+                            <ArrowDownRight className="h-4 w-4" />
+                          )}
+                        </div>
+                        <div>
+                          <p className="font-medium text-sm">{transaction.name}</p>
+                          <p className="text-xs text-muted-foreground">{transaction.date}</p>
+                        </div>
+                      </div>
+                      <span className={`font-semibold ${
+                        transaction.type === "income" ? "text-success" : "text-destructive"
+                      }`}>
+                        {transaction.amount}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+        </div>
+      )}
     </div>
   )
 }

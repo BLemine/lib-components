@@ -16,13 +16,18 @@ import {
   CalendarCheck,
   Wallet,
   BookOpen,
-  Sparkles
+  Sparkles,
+  MessageSquare,
+  Columns3,
+  LifeBuoy,
+  Landmark,
 } from "lucide-react"
 
 import { SignInSimple } from "@/components/auth/sign-in-simple"
 import { SignInAnimated } from "@/components/auth/sign-in-animated"
 import { SignUpSimple } from "@/components/auth/sign-up-simple"
 import { SignUpAnimated } from "@/components/auth/sign-up-animated"
+import { SignUpMultistep } from "@/components/auth/sign-up-multistep"
 import { ProfileUI } from "@/components/profile/profile-ui"
 import { FinanceDashboard } from "@/components/dashboard/finance-dashboard"
 import { UsersDashboard } from "@/components/dashboard/users-dashboard"
@@ -30,6 +35,10 @@ import { AdvancedCalendar } from "@/components/calendar/advanced-calendar"
 import { PayrollDashboard } from "@/components/payroll/payroll-dashboard"
 import { BookingUI } from "@/components/booking/booking-ui"
 import { WalletUI } from "@/components/wallet/wallet-ui"
+import { ChatUI } from "@/components/chat/chat-ui"
+import { KanbanUI } from "@/components/kanban/kanban-ui"
+import { SupportUI } from "@/components/support/support-ui"
+import { BankingDashboard } from "@/components/banking/banking-dashboard"
 
 const components = [
   {
@@ -55,6 +64,12 @@ const components = [
     name: "Sign Up (Animated)",
     category: "Auth",
     icon: Sparkles,
+  },
+  {
+    id: "signup-multistep",
+    name: "Sign Up (Multi-Step)",
+    category: "Auth",
+    icon: UserPlus,
   },
   {
     id: "profile",
@@ -98,6 +113,30 @@ const components = [
     category: "Wallet",
     icon: Wallet,
   },
+  {
+    id: "chat",
+    name: "Chat UI",
+    category: "Chat",
+    icon: MessageSquare,
+  },
+  {
+    id: "kanban",
+    name: "Kanban Board",
+    category: "Kanban",
+    icon: Columns3,
+  },
+  {
+    id: "support",
+    name: "Customer Support",
+    category: "Support",
+    icon: LifeBuoy,
+  },
+  {
+    id: "banking",
+    name: "Banking Dashboard",
+    category: "Banking",
+    icon: Landmark,
+  },
 ]
 
 export default function ComponentsShowcase() {
@@ -113,6 +152,8 @@ export default function ComponentsShowcase() {
         return <SignUpSimple />
       case "signup-animated":
         return <SignUpAnimated />
+      case "signup-multistep":
+        return <SignUpMultistep />
       case "profile":
         return <ProfileUI />
       case "finance-dashboard":
@@ -127,6 +168,14 @@ export default function ComponentsShowcase() {
         return <BookingUI />
       case "wallet":
         return <WalletUI />
+      case "chat":
+        return <ChatUI />
+      case "kanban":
+        return <KanbanUI />
+      case "support":
+        return <SupportUI />
+      case "banking":
+        return <BankingDashboard />
       default:
         return <SignInSimple />
     }

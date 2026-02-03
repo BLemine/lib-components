@@ -309,34 +309,36 @@ export function KanbanUI({
                     return (
                       <Card
                         key={task.id}
-                        className="cursor-pointer hover:shadow-md transition-shadow"
+                        className="cursor-pointer hover:shadow-md transition-shadow py-0 gap-0"
                       >
                         <CardContent className="p-4">
                           {/* Tags */}
-                          <div className="flex flex-wrap gap-1 mb-2">
-                            {task.tags.map((tag) => (
-                              <span
-                                key={tag}
-                                className={cn(
-                                  "px-2 py-0.5 rounded-full text-xs font-medium",
-                                  tagColors[tag] || "bg-muted text-muted-foreground"
-                                )}
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
+                          {task.tags.length > 0 && (
+                            <div className="flex flex-wrap gap-1 mb-2">
+                              {task.tags.map((tag) => (
+                                <span
+                                  key={tag}
+                                  className={cn(
+                                    "px-2 py-0.5 rounded-full text-xs font-medium",
+                                    tagColors[tag] || "bg-muted text-muted-foreground"
+                                  )}
+                                >
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                          )}
 
                           {/* Title */}
-                          <h4 className="font-medium mb-1">{task.title}</h4>
+                          <h4 className="font-medium text-sm mb-1">{task.title}</h4>
                           {task.description && (
-                            <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
+                            <p className="text-xs text-muted-foreground line-clamp-2 mb-3">
                               {task.description}
                             </p>
                           )}
 
                           {/* Progress */}
-                          {task.progress !== undefined && (
+                          {showProgress && task.progress !== undefined && (
                             <div className="mb-3">
                               <div className="flex items-center justify-between text-xs mb-1">
                                 <span className="text-muted-foreground">Progress</span>
@@ -347,8 +349,8 @@ export function KanbanUI({
                           )}
 
                           {/* Footer */}
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3">
+                          <div className="flex items-center justify-between pt-2 border-t border-border/50 mt-2">
+                            <div className="flex items-center gap-2">
                               {/* Priority */}
                               <div className={cn("flex items-center gap-1", priorityConfig[task.priority].color)}>
                                 <PriorityIcon className="h-3.5 w-3.5" />
@@ -357,7 +359,7 @@ export function KanbanUI({
                               {/* Due Date */}
                               {task.dueDate && (
                                 <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                                  <Calendar className="h-3.5 w-3.5" />
+                                  <Calendar className="h-3 w-3" />
                                   <span>{task.dueDate}</span>
                                 </div>
                               )}
@@ -365,7 +367,7 @@ export function KanbanUI({
                               {/* Comments */}
                               {task.comments > 0 && (
                                 <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                                  <MessageSquare className="h-3.5 w-3.5" />
+                                  <MessageSquare className="h-3 w-3" />
                                   <span>{task.comments}</span>
                                 </div>
                               )}
@@ -373,7 +375,7 @@ export function KanbanUI({
                               {/* Attachments */}
                               {task.attachments > 0 && (
                                 <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                                  <Paperclip className="h-3.5 w-3.5" />
+                                  <Paperclip className="h-3 w-3" />
                                   <span>{task.attachments}</span>
                                 </div>
                               )}

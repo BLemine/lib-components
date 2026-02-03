@@ -22,6 +22,7 @@ import {
   LifeBuoy,
   Landmark,
   FolderOpen,
+  UtensilsCrossed,
 } from "lucide-react"
 
 import { SignInSimple } from "@/components/auth/sign-in-simple"
@@ -41,6 +42,7 @@ import { KanbanUI } from "@/components/kanban/kanban-ui"
 import { SupportUI } from "@/components/support/support-ui"
 import { BankingDashboard } from "@/components/banking/banking-dashboard"
 import { FileManagerUI } from "@/components/files/file-manager-ui"
+import { RestaurantDashboard } from "@/components/restaurant/restaurant-dashboard"
 
 const components = [
   {
@@ -145,6 +147,12 @@ const components = [
     category: "Files",
     icon: FolderOpen,
   },
+  {
+    id: "restaurant",
+    name: "Restaurant Dashboard",
+    category: "Restaurant",
+    icon: UtensilsCrossed,
+  },
 ]
 
 export default function ComponentsShowcase() {
@@ -186,6 +194,8 @@ export default function ComponentsShowcase() {
         return <BankingDashboard />
       case "file-manager":
         return <FileManagerUI />
+      case "restaurant":
+        return <RestaurantDashboard />
       default:
         return <SignInSimple />
     }

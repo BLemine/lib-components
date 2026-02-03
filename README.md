@@ -77,24 +77,29 @@ A comprehensive, production-ready UI component library built entirely with **Ver
 
 ### Installation
 
-\`\`\`bash
-# Clone the repository
+### Clone the repository
+```bash
 git clone https://github.com/your-username/lib-components.git
 cd lib-components
+```
 
-# Install dependencies
+### Install dependencies
+```bash
 pnpm install
+```
 
-# Start development server
+### Start development server
+```bash
 pnpm dev
-\`\`\`
+```
 
 ### Storybook
 
-\`\`\`bash
-# Start Storybook for component development
+
+### Start Storybook for component development
+```bash
 pnpm storybook
-\`\`\`
+```
 
 Then open `http://localhost:6006` in your browser.
 
@@ -102,7 +107,7 @@ Then open `http://localhost:6006` in your browser.
 
 ## Project Structure
 
-\`\`\`
+```bash
 lib-components/
 ├── app/                    # Next.js app directory
 │   ├── page.tsx           # Component preview gallery
@@ -125,7 +130,7 @@ lib-components/
 │   └── ui/                # Base shadcn/ui components
 ├── stories/               # Storybook stories
 └── .storybook/            # Storybook configuration
-\`\`\`
+```
 
 ---
 
@@ -139,14 +144,14 @@ All components are fully configurable via props. Each component supports:
 - **Event callbacks** (e.g., `onSubmit`, `onSelect`)
 
 Example:
-\`\`\`tsx
+```tsx
 <BankingDashboard
   title="My Finances"
   subtitle="Track your spending"
   showQuickTransfer={true}
   showExpenseCategories={true}
 />
-\`\`\`
+```
 
 ---
 

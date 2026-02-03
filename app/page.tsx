@@ -20,6 +20,7 @@ import {
   MessageSquare,
   Columns3,
   LifeBuoy,
+  Landmark,
 } from "lucide-react"
 
 import { SignInSimple } from "@/components/auth/sign-in-simple"
@@ -37,6 +38,7 @@ import { WalletUI } from "@/components/wallet/wallet-ui"
 import { ChatUI } from "@/components/chat/chat-ui"
 import { KanbanUI } from "@/components/kanban/kanban-ui"
 import { SupportUI } from "@/components/support/support-ui"
+import { BankingDashboard } from "@/components/banking/banking-dashboard"
 
 const components = [
   {
@@ -129,6 +131,12 @@ const components = [
     category: "Support",
     icon: LifeBuoy,
   },
+  {
+    id: "banking",
+    name: "Banking Dashboard",
+    category: "Banking",
+    icon: Landmark,
+  },
 ]
 
 export default function ComponentsShowcase() {
@@ -166,6 +174,8 @@ export default function ComponentsShowcase() {
         return <KanbanUI />
       case "support":
         return <SupportUI />
+      case "banking":
+        return <BankingDashboard />
       default:
         return <SignInSimple />
     }

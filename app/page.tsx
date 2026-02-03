@@ -21,6 +21,7 @@ import {
   Columns3,
   LifeBuoy,
   Landmark,
+  FolderOpen,
 } from "lucide-react"
 
 import { SignInSimple } from "@/components/auth/sign-in-simple"
@@ -39,6 +40,7 @@ import { ChatUI } from "@/components/chat/chat-ui"
 import { KanbanUI } from "@/components/kanban/kanban-ui"
 import { SupportUI } from "@/components/support/support-ui"
 import { BankingDashboard } from "@/components/banking/banking-dashboard"
+import { FileManagerUI } from "@/components/files/file-manager-ui"
 
 const components = [
   {
@@ -137,6 +139,12 @@ const components = [
     category: "Banking",
     icon: Landmark,
   },
+  {
+    id: "file-manager",
+    name: "File Manager",
+    category: "Files",
+    icon: FolderOpen,
+  },
 ]
 
 export default function ComponentsShowcase() {
@@ -176,6 +184,8 @@ export default function ComponentsShowcase() {
         return <SupportUI />
       case "banking":
         return <BankingDashboard />
+      case "file-manager":
+        return <FileManagerUI />
       default:
         return <SignInSimple />
     }

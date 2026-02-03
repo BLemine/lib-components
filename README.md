@@ -8,15 +8,15 @@ A reusable UI component library with a Next.js demo app and Storybook for isolat
 
 ## Getting started
 
-```bash
+\`\`\`bash
 pnpm install
 pnpm dev
-```
+\`\`\`
 
 ## Storybook UI
 
-```bash
+\`\`\`bash
 pnpm storybook
-```
+\`\`\`
 
 Then open `http://localhost:6006` in your browser.

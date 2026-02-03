@@ -50,7 +50,7 @@ export function SignUpAnimated() {
   }
 
   return (
-    <div className="relative w-full max-w-lg">
+    <div className="relative w-[480px] max-w-[90vw]">
       {/* Background glow effect */}
       <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 blur-xl opacity-75 animate-pulse" />
       
